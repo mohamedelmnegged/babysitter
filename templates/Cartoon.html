@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+       <!-- Page Content -->
+       <section class="welcoming py-4">
+        <div class="container d-flex justify-content-center align-items-center flex-column">
+          <h3 class="welcom-heading">مرحبا صديقي <span> | عمر |</span></h3>
+          <p>أستمتع بمشاهدة الكارتون وقت فراغك</p>
+        </div>
+    </section>
+
+
+    <!-- Anime -->
+
+    <section class="dashboard">
+        <div class="container">
+            <div class="row mb-5 pb-4">
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-1 ">
+                    <div class="text">
+                        <p id="today-point-text">كارتون</p>
+                        <p>توم & جيري</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="xo-game">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-2">
+                    <div class="text">
+                        <p id="today-point-text">كارتون</p>
+                        <p>بن 10</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/puzzle.png')}}" alt="star">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-1">
+                    <div class="text">
+                        <p id="today-point-text">كارتون</p>
+                        <p>السنافر</p>
+                    </div>
+                      <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="">
+                  </div>
+                </div>
+            </div>
+
+            <div class="row mb-5 pb-4">
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-1 ">
+                    <div class="text">
+                        <p id="today-point-text">كارتون</p>
+                        <p>كرة قدم المجرات</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="xo-game">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-1">
+                    <div class="text">
+                        <p id="today-point-text">كارتون</p>
+                        <p>فتيات القوة</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/puzzle.png')}}" alt="star">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-1">
+                    <div class="text">
+                        <p id="today-point-text">كارتون</p>
+                        <p>سبونج بوب</p>
+                    </div>
+                      <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="">
+                  </div>
+                </div>
+            </div>
+
+
+
+            </div>
+    </section>
+
+{% endblock%}
+
+
+
+    {% block scripts %}
+        <script>
+
+        </script>
+
+
+    {% endblock %}

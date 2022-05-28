@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block body %}
+      <!-- Page Content -->
+      <section class="welcoming py-4">
+          <div class="container d-flex justify-content-center align-items-center flex-column">
+            <h3 class="welcom-heading">مرحبا صديقي <span> | عمر |</span></h3>
+            <p>قم بأنجاز المهام حتى تحصل على النقاط والجوائز</p>
+          </div>
+      </section>
+
+      <!-- Dashboard -->
+      <section class="dashboard">
+          <div class="container">
+              <div class="row mb-5 pb-4">
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-1 ">
+                      <div class="text">
+                          <p id="today-point-text">نقاط اليوم</p>
+                          <p><span class="number" id="today-point-number">{{todayPoints}}</span> نقاط</p>
+                      </div>
+                      <img src="{{url_for('static', filename='imgs/coin.png')}}" alt="coin">
+                    </div>
+                  </div>
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-2">
+                      <div class="text">
+                        <p id="month-point-text">جميع نقاط اليوم</p>
+                        <p><span class="number" id="month-point-number">{{points}}</span> نقاط</p>
+                      </div>
+                      <img src="{{url_for('static', filename='imgs/star.png')}}" alt="star">
+                    </div>
+                  </div>
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-3">
+                        <div class="text">
+                            <p>الجوائز</p>
+                            <p>شاهد الجوائز</p>
+                        </div>
+                        <img src="{{url_for('static', filename='imgs/trophy.png')}}" alt="">
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div class="task-wrapper py-2 px-3">
+                          <h4>مهمات اليوم</h4>
+                        {% for unDone in unDoneTasks %}
+                          <div class="task p-1 mb-1">
+                            <input type="checkbox" id="task1" onchange="sendTaskAjax(`{{unDone}}`)">
+                              <label for="task1">
+                                  {{unDone }}
+                              </label>
+                          </div>
+                        {% endfor %}
+
+                          {% for done in doneTasks %}
+                          <div class="task p-1 mb-1">
+                            <input type="checkbox" checked id="task1" onchange="sendTaskAjax(`{{done}}`)">
+                              <label for="task1">
+                                  {{done }}
+                              </label>
+                          </div>
+                        {% endfor %}
+
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="wise-wrapper">
+                          <h4 class="mb-3">حكمة اليوم</h4>
+                          <div class="text-pic">
+                              <img src="{{url_for('static', filename='imgs/leader.png')}}" alt="wise-1">
+                              <p class="wise-p" id="wise-1">العقل السليكم في الجسم السليم</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+{% endblock %}
+
+
+
+    {% block scripts %}
+
+        <script>
+            function sendTaskAjax(task){
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajaxTasks',
+                    contentType:"application/json; charset=UTF-8",
+                    data: task,
+                    success: function(msg){
+                        alert( 'أحسنت انك تحقق إنجازا ');
+                    }
+                });
+            }
+
+        </script>
+
+
+    {% endblock %}
