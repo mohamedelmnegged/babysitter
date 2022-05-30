@@ -1,0 +1,127 @@
+     {% extends 'base.html' %}
+
+      {% block body  %}
+
+
+      <!-- Page Content -->
+      <section class="welcoming py-4">
+          <div class="container d-flex justify-content-center align-items-center flex-column">
+            <h3 class="welcom-heading">مرحبا يا <span> | بطيخة |</span></h3>
+          </div>
+      </section>
+
+      <!-- Dashboard -->
+      <section class="dashboard">
+          <div class="container">
+              <div class="row mb-5 pb-4">
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-1 ">
+                      <div class="text">
+                          <p id="temper">درجة الحرارة</p>
+                          <p><span class="number mx-1" id="temper-num">{{temp}}</span>C<sup>o</sup></p>
+                      </div>
+                      <img src="{{url_for('static', filename='imgs/temper.png')}}" alt="coin">
+                    </div>
+                  </div>
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-2">
+                      <div class="text">
+                        <p id="humad">الرطوبة</p>
+                        <p><span class="number mx-1" id="humad-num">{{humaditiy}}</span>%</p>
+                      </div>
+                      <img src="{{url_for('static', filename='imgs/drop.png')}}" alt="star">
+                    </div>
+                  </div>
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-3">
+                        <div class="text">
+                            <p>اتصل بألابن</p>
+                        </div>
+                        <img src="{{url_for('static', filename='imgs/call.png')}}" alt="">
+                    </div>
+                  </div>
+              </div>
+              <div class="row align-items-center justify-content-center">
+                  <div class="col-12 col-md-6">
+                      <div class="task-wrapper py-2 px-3" id="task-wrapper">
+                          <h4>مهمات اليوم</h4>
+                          <div class="tasks" id="tasks">
+                              {% for task in unDoneTasks %}
+                            <div class="task p-1 mb-1">
+                              <input type="checkbox" id="task1">
+                                <label for="task1">
+                                    {{task}}
+                                </label>
+                            </div>
+                              {% endfor %}
+                          </div>
+                        <div class="input-wrapper d-flex align-items-center justify-content-between gap-2">
+                          <input class="flex-grow-1 h-100" type="text" name="" id="add-task-text" placeholder="ادخل المهمة">
+                          <button class="btn btn-primary p-2" id="add-task-input">أضافة</button>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      {% endblock  %}
+
+
+    {% block scripts %}
+
+    <!-- Bootstrap Js -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Main Js -->
+    <script src="js/main.js"></script>
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+     <script>
+
+          const taskInput = document.getElementById('add-task-text'),
+          taskBtn = document.getElementById('add-task-input'),
+          taskWrapper = document.getElementById('tasks');
+
+        taskBtn.addEventListener('click', function(){
+            let taskValue = taskInput.value;
+
+            if(taskValue == ''){
+                alert('يجب عليك ادخال نص للمهمة')
+            }else{
+                let newTaskWrapper = document.createElement('div');
+                newTaskWrapper.classList.add('task');
+                newTaskWrapper.classList.add('p-1');
+                newTaskWrapper.classList.add('mb-1');
+
+                let newTaskcheckbox = document.createElement('input');
+                newTaskcheckbox.setAttribute('id', 'task3');
+                newTaskcheckbox.setAttribute('type', 'checkbox');
+
+                let newTasklable = document.createElement('label');
+                newTasklable.setAttribute('for', 'task3');
+                newTasklable.innerText = taskValue;
+
+                newTaskWrapper.append(newTaskcheckbox);
+                newTaskWrapper.append(newTasklable);
+                taskWrapper.append(newTaskWrapper);
+                taskInput.value = '';
+
+                sendTaskAjax(taskValue)
+                }
+            });
+
+
+            function sendTaskAjax(task){
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajaxTasks',
+                    contentType:"application/json; charset=UTF-8",
+                    data: task,
+                    success: function(msg){
+                        console.log( 'أحسنت انك تحقق إنجازا ');
+                    }
+                });
+            }
+
+        </script>
+
+    {% endblock %}
