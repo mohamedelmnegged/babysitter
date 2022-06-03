@@ -28,3 +28,13 @@ taskBtn.addEventListener('click', function(){
     }
 
 });
+
+
+
+
+function changeVideoLink(link) {
+    const frame = document.querySelector('iframe');
+    let endLink = link.split('.be/')[1];
+    console.log(endLink);
+    frame.src =   `https://www.youtube.com/embed/${endLink}`;
+}

@@ -1,31 +1,37 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_mysqldb import MySQL
 
 import math
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
+import urllib
+import simplejson
+
+from bs4 import BeautifulSoup
+import requests
+
+from pytube import YouTube
+
 cred = credentials.Certificate("graduation-project-4b1ce-firebase-adminsdk-d9l8z-0575b351ad.json")
 firebase_admin.initialize_app(cred,{'databaseURL' : 'https://graduation-project-4b1ce-default-rtdb.firebaseio.com/'})
 
 
-def listener(event):
-    # print(event.event_type)  # can be 'put' or 'patch'
-    # print(event.path)  # relative to the reference, it seems
-    # print(event.data)
-    if (event.path == '/Fire'):
-        # self.label_4.setText(event.data)
-        fire = event.data
-
-ref = db.reference('Sensors/')
-ref.listen(listener)
-
+# def listener(event):
+#     # print(event.event_type)  # can be 'put' or 'patch'
+#     # print(event.path)  # relative to the reference, it seems
+#     # print(event.data)
+#     if (event.path == '/Fire'):
+#         # self.label_4.setText(event.data)
+#         # fire = event.data
+#         print('fire')
 
 
 app = Flask(__name__)
 
-ll = db.reference('test/')
+ref = db.reference('Sensors/')
+#ref.listen(listener)
+
 fire = ref.child('Fire').get()
 gas = ref.child('Gas').get()
 humaditiy = ref.child('Humidity').get()
@@ -52,11 +58,29 @@ def games():
 
 @app.route('/cartoon')
 def cartoon():
-    return render_template('Cartoon.html', current='cartoon')
+    cartoon = db.reference('Videos').child("Cartoon").get()
+    videos = []
+    for video in cartoon[1:]:
+        yt = YouTube(video)
+        print(yt.title)
+        videos.append([yt.title, video])
+    
+    return render_template('Cartoon.html',
+                           current='cartoon', 
+                           videos=videos)
 
 @app.route('/education')
 def education():
-    return render_template('Education.html', current='education')
+    education = db.reference('Videos').child("Education").get()
+    videos = []
+    for video in education[1:]:
+        yt = YouTube(video)
+        print(yt.title)
+        videos.append([yt.title, video])
+    
+    return render_template('Education.html', 
+                            current='education',
+                            videos=videos)
 
 @app.route('/ajaxTasks', methods=['POST'])
 def ajaxTasks():

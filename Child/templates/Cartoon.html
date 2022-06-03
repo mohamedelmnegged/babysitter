@@ -13,73 +13,49 @@
 
 
     <!-- Anime -->
-
     <section class="dashboard">
-        <div class="container">
-            <div class="row mb-5 pb-4">
-                <div class="control-wrapper col-12 col-md-4">
-                  <div class="control control-1 ">
-                    <div class="text">
-                        <p id="today-point-text">كارتون</p>
-                        <p>توم & جيري</p>
-                    </div>
-                    <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="xo-game">
-                  </div>
+      <div class="container"> 
+        <!-- start model   -->
+        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centere">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="control-wrapper col-12 col-md-4">
-                  <div class="control control-2">
-                    <div class="text">
-                        <p id="today-point-text">كارتون</p>
-                        <p>بن 10</p>
-                    </div>
-                    <img src="{{url_for('static', filename='imgs/puzzle.png')}}" alt="star">
-                  </div>
+                <div class="modal-body">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/t0Q2otsqC4I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="control-wrapper col-12 col-md-4">
-                  <div class="control control-1">
-                    <div class="text">
-                        <p id="today-point-text">كارتون</p>
-                        <p>السنافر</p>
-                    </div>
-                      <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="">
-                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Understood</button>
                 </div>
+              </div>
             </div>
+          </div>
+        <!-- end model   -->
 
-            <div class="row mb-5 pb-4">
-                <div class="control-wrapper col-12 col-md-4">
-                  <div class="control control-1 ">
-                    <div class="text">
-                        <p id="today-point-text">كارتون</p>
-                        <p>كرة قدم المجرات</p>
-                    </div>
-                    <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="xo-game">
-                  </div>
+          <div class="row mb-5 pb-4">
+           {% for i in videos %}
+            <div class="control-wrapper col-12 col-md-4 my-3">
+                <div class="control control-1 px-3">
+                  <a type="button" 
+                   class="open-modal btn" 
+                   data-bs-toggle="modal" 
+                   data-bs-target="#staticBackdrop" 
+                   onclick="changeVideoLink(`{{i[1]}}`)"></a>
+                  
+                   <div class="text">
+                      <p id="today-point-text">{{i[0]}}</p>
+                  </div> 
+                  <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="xo-game">
                 </div>
-                <div class="control-wrapper col-12 col-md-4">
-                  <div class="control control-1">
-                    <div class="text">
-                        <p id="today-point-text">كارتون</p>
-                        <p>فتيات القوة</p>
-                    </div>
-                    <img src="{{url_for('static', filename='imgs/puzzle.png')}}" alt="star">
-                  </div>
-                </div>
-                <div class="control-wrapper col-12 col-md-4">
-                  <div class="control control-1">
-                    <div class="text">
-                        <p id="today-point-text">كارتون</p>
-                        <p>سبونج بوب</p>
-                    </div>
-                      <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="">
-                  </div>
-                </div>
+              </div>
+              {% endfor %}
             </div>
+          </div>
+  </section>
 
-
-
-            </div>
-    </section>
 
 {% endblock%}
 
