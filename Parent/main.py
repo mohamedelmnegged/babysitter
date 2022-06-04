@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_mysqldb import MySQL
+#from flask_mysqldb import MySQL
 import os
 import math
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import validators
 
 cred = credentials.Certificate("graduation-project-4b1ce-firebase-adminsdk-d9l8z-0575b351ad.json")
 firebase_admin.initialize_app(cred,{'databaseURL' : 'https://graduation-project-4b1ce-default-rtdb.firebaseio.com/'})
@@ -85,7 +86,77 @@ def ajaxTasks():
 def auth():
     return os.environ.get('auth')
 
+@app.route('/cartoonVedios')
+def cartoonVedios():
+    getViedos = db.reference('Videos/').child('Cartoon').get()
+    videos = []
+    for video in getViedos[1:]: 
+        videos.append(video.split('.be/')[1])
+    return render_template("cartoonVedios.html", viedos=videos)     
+    
 
+
+@app.route('/eduVedios')
+def eduVedios():     
+    getViedos = db.reference('Videos/').child('Education').get()
+    videos = []
+    for video in getViedos[1:]: 
+        videos.append(video.split('.be/')[1])
+    return render_template("eduVedios.html", viedos=videos)
+
+@app.route('/ajaxeducationViedos', methods=['POST'])
+def ajaxeducationViedos(): 
+    if request.method == "POST":
+        data = request.data.decode("utf-8")
+        if validators.url(data)==True:
+           videos = db.reference('Videos/')
+           education = list(videos.child('Education').get())
+           education.append(data)
+           videos.child('Education').set(education)
+           return 'تمت الإضافه بنجاح'
+        else: 
+            return 'من فضلك أدخل لينك صحيح'
+
+@app.route('/ajaxeducationViedoReomve', methods=['POST'])
+def ajaxeducationViedoReomve(): 
+    if request.method == "POST": 
+        data = request.data.decode('utf-8')
+        videos = db.reference('Videos/')
+        education = list(videos.child("Education").get())
+        for video in education[1:]: 
+            if video.split('.be/')[1] == data:
+                education.remove(video)
+        videos.child("Education").set(education)
+        return 'تمت الحذف بنجاح'
+    return 'يوجد مشكله في الحذف'
+
+
+
+@app.route('/ajaxCartoonViedos', methods=['POST'])
+def ajaxCartoonViedos(): 
+    if request.method == "POST":
+        data = request.data.decode("utf-8")
+        if validators.url(data)==True:
+           videos = db.reference('Videos/')
+           education = list(videos.child('Cartoon').get())
+           education.append(data)
+           videos.child('Cartoon').set(education)
+           return 'تمت الإضافه بنجاح'
+        else: 
+            return 'من فضلك أدخل لينك صحيح'
+
+@app.route('/ajaxCartoonViedoReomve', methods=['POST'])
+def ajaxCartoonViedoReomve(): 
+    if request.method == "POST": 
+        data = request.data.decode('utf-8')
+        videos = db.reference('Videos/')
+        education = list(videos.child("Cartoon").get())
+        for video in education[1:]: 
+            if video.split('.be/')[1] == data:
+                education.remove(video)
+        videos.child("Cartoon").set(education)
+        return 'تمت الحذف بنجاح'
+    return 'يوجد مشكله في الحذف'
 
 if __name__ == "__main__":
     app.run(debug= True, port=90000)

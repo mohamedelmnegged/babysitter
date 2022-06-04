@@ -1,0 +1,84 @@
+
+
+{% extends 'base.html' %}
+
+{% block body  %}
+
+
+<!-- Dashboard -->
+<section class="dashboard">
+    <div class="container">
+        <div class="addVideoWrapper row my-5">
+        <div class="input-wrapper d-flex align-items-center justify-content-between gap-2">
+            <input class="flex-grow-1 h-100" type="text" name="" id="add-new-eduVedio" placeholder="ادخل رابط الفيديو">
+            <button class="btn btn-primary p-2" onclick="sendVideo()" id="add-new-eduVedio-input">أضافة</button>
+        </div>
+        <div class="eduVidoes row my-5" id="eduVidoes">
+        <div class="control-wrapper col-12 col-md-4">
+            {% for video in viedos %}
+                <div class="control control-1 mb-2">
+                    <span class="remove" onclick="remove(`{{video}}`)">
+                        <!-- <button > X </button> -->
+                        x
+                    </span>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+
+
+{% block scripts %}
+
+<!-- Bootstrap Js -->
+<script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+<!-- Main Js -->
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+<script> 
+function remove(video){ 
+    if(video == ''){
+        alert('لا يوجود فيديو للحذف')
+    }else{
+        ajaxRemove(video)
+    }
+}
+function sendVideo(){ 
+    const videoInput = document.getElementById('add-new-eduVedio')
+    videoValue = videoInput.value
+    if(videoValue == ''){
+        alert('يجب عليك وضع لينك للفيدويو');
+    }else{
+        videoInput.value = ''
+        sendViedoAjax(videoValue)
+    }
+}
+
+function sendViedoAjax(viedo){
+    $.ajax({
+        type: 'POST',
+        url: '/ajaxeducationViedos',
+        contentType:"application/json; charset=UTF-8",
+        data: viedo,
+        success: function(msg){
+            alert(msg);
+        }
+    });
+}
+function ajaxRemove(viedo){
+    $.ajax({
+        type: 'POST',
+        url: '/ajaxeducationViedoReomve',
+        contentType:"application/json; charset=UTF-8",
+        data: viedo,
+        success: function(msg){
+            alert(msg);
+        }
+    });
+}
+</script>
+{% endblock %}

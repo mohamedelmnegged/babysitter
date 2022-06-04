@@ -41,6 +41,35 @@
                     </div>
                   </div>
               </div>
+              <div class="row mb-5 pb-4">
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-4 mb-2">
+                    <a href="eduVedios"></a>
+                    <div class="text">
+                        <p id="temper">فيدوهات تعليمية</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/idea.png')}}" alt="coin">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-5 mb-2">
+                    <a href="cartoonVedios"></a>
+                    <div class="text">
+                      <p id="temper">فيدوهات ترفيهية</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/animation.png')}}" alt="star">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-6 mb-2">
+                    <a href="gamesDad.html"></a>
+                    <div class="text">
+                      <p id="temper">ألعاب</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/joystick.png')}}" alt="star">
+                  </div>
+                </div>
+ 
               <div class="row align-items-center justify-content-center">
                   <div class="col-12 col-md-6">
                       <div class="task-wrapper py-2 px-3" id="task-wrapper">
@@ -70,12 +99,13 @@
 
     {% block scripts %}
 
-    <!-- Bootstrap Js -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- Main Js -->
-    <script src="js/main.js"></script>
-    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
-     <script>
+
+      <!-- Bootstrap Js -->
+      <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+      <!-- Main Js -->
+      <script src="{{url_for('static', filename='js/main.js')}}"></script>
+      <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+       <script>
 
           const taskInput = document.getElementById('add-task-text'),
           taskBtn = document.getElementById('add-task-input'),
