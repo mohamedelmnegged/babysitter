@@ -7,8 +7,11 @@ from firebase_admin import credentials
 from firebase_admin import db
 import validators
 
-cred = credentials.Certificate("graduation-project-4b1ce-firebase-adminsdk-d9l8z-0575b351ad.json")
-firebase_admin.initialize_app(cred,{'databaseURL' : 'https://graduation-project-4b1ce-default-rtdb.firebaseio.com/'})
+#cred = credentials.Certificate("graduation-project-4b1ce-firebase-adminsdk-d9l8z-0575b351ad.json")
+#firebase_admin.initialize_app(cred,{'databaseURL' : 'https://graduation-project-4b1ce-default-rtdb.firebaseio.com/'})
+
+cred = credentials.Certificate("esp-firebase-demo-bc7a1-firebase-adminsdk-b3ta2-f5c655842c.json")
+firebase_admin.initialize_app(cred,{'databaseURL' : 'https://esp-firebase-demo-bc7a1-default-rtdb.firebaseio.com/'})
 
 
 # def listener(event):
@@ -63,11 +66,11 @@ def doLogin():
         password = request.form['password']
 
         auth = db.reference('Auth/')
+        
         authEmail = auth.child('Email').get()
         authPass  = auth.child('Pass').get()
-
+        
         if email == authEmail and password == authPass:
-
             os.environ['auth'] = "true"
             return redirect('/')
     return redirect('/login')
