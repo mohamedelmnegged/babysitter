@@ -516,3 +516,4 @@ while (1):
        if respond(voice_data) == True:
            isOpen = False
         #break  # respond
+        

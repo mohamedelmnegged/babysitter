@@ -6,7 +6,7 @@
       <!-- Page Content -->
       <section class="welcoming py-4">
           <div class="container d-flex justify-content-center align-items-center flex-column">
-            <h3 class="welcom-heading">مرحبا يا <span> | بطيخة |</span></h3>
+            <h3 class="welcom-heading">مرحبا  <span> </span></h3>
           </div>
       </section>
 
@@ -32,6 +32,30 @@
                       <img src="{{url_for('static', filename='imgs/drop.png')}}" alt="star">
                     </div>
                   </div>
+
+                
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-2">
+                      <div class="text">
+                        <p id="humad">الغاز</p>
+                        <p><span class="number mx-1" id="humad-num">{{gas}}</span>%</p>
+                      </div>
+                      <img src="{{url_for('static', filename='imgs/drop.png')}}" alt="star">
+                    </div>
+                  </div>
+
+                  
+                  <div class="control-wrapper col-12 col-md-4">
+                    <div class="control control-2">
+                      <div class="text">
+                        <p id="humad">النار</p>
+                        <p><span class="number mx-1" id="humad-num">{{fire}}</span>%</p>
+                      </div>
+                      <img src="{{url_for('static', filename='imgs/drop.png')}}" alt="star">
+                    </div>
+                  </div>
+
+
                   <div class="control-wrapper col-12 col-md-4">
                     <a href="https://www.google.com" target="_blank">
                       <div class="control control-3"> 

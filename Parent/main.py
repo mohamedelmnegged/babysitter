@@ -36,7 +36,7 @@ def index():
         gas = ref.child('Gas').get()
         humaditiy = ref.child('Humidity').get()
         temp = ref.child('Temperature').get()
-
+    
         tasks = db.reference('Tasks/')
         unDoneTasks = list(tasks.child('UnDone').get())[1:]
 
@@ -93,8 +93,9 @@ def auth():
 def cartoonVedios():
     getViedos = db.reference('Videos/').child('Cartoon').get()
     videos = []
-    for video in getViedos[1:]: 
-        videos.append(video.split('.be/')[1])
+    if getViedos != None:
+        for video in getViedos[1:]:
+            videos.append(video.split('.be/')[-1])
     return render_template("cartoonVedios.html", viedos=videos)     
     
 
@@ -103,8 +104,9 @@ def cartoonVedios():
 def eduVedios():     
     getViedos = db.reference('Videos/').child('Education').get()
     videos = []
-    for video in getViedos[1:]: 
-        videos.append(video.split('.be/')[1])
+    if getViedos != None:
+        for video in getViedos[1:]: 
+            videos.append(video.split('.be/')[1])
     return render_template("eduVedios.html", viedos=videos)
 
 @app.route('/ajaxeducationViedos', methods=['POST'])
