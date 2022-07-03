@@ -6,8 +6,8 @@
        <!-- Page Content -->
        <section class="welcoming py-4">
         <div class="container d-flex justify-content-center align-items-center flex-column">
-          <h3 class="welcom-heading">مرحبا صديقي <span> | عمر |</span></h3>
-          <p>أستمتع بمشاهدة الكارتون وقت فراغك</p>
+          <h3 class="welcom-heading">مرحبا يا صديقي <span></span></h3>
+          <p>أستمتع بمشاهدة الكارتون في وقت فراغك</p>
         </div>
     </section>
 
@@ -20,15 +20,14 @@
             <div class="modal-dialog modal-dialog-centere">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <h5 class="modal-title" id="staticBackdropLabel">كارتون</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <iframe width="560" height="315" src="https://www.youtube.com/embed/t0Q2otsqC4I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Understood</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">أغلق</button>
                 </div>
               </div>
             </div>
@@ -48,7 +47,7 @@
                    <div class="text">
                       <p id="today-point-text">{{i[0]}}</p>
                   </div> 
-                  <img src="{{url_for('static', filename='imgs/xo.png')}}" alt="xo-game">
+                  <img src="{{url_for('static', filename='imgs/toon.png')}}" alt="xo-game">
                 </div>
               </div>
               {% endfor %}

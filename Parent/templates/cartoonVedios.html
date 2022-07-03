@@ -32,51 +32,53 @@
 
 {% block scripts %}
 
+<script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+
+<script> 
+    
+    function remove(video){ 
+        if(video == ''){
+            alert('لا يوجود فيديو للحذف')
+        }else{
+            ajaxRemove(video)
+        }
+    }
+    function sendVideo(){ 
+        const videoInput = document.getElementById('add-new-cartoonVedio')
+        videoValue = videoInput.value
+        if(videoValue == ''){
+            alert('يجب عليك وضع لينك للفيدويو');
+        }else{
+            videoInput.value = ''
+            sendViedoAjax(videoValue)
+        }
+    }
+    
+    function sendViedoAjax(viedo){
+        $.ajax({
+            type: 'POST',
+            url: '/ajaxCartoonViedos',
+            contentType:"application/json; charset=UTF-8",
+            data: viedo,
+            success: function(msg){
+                alert(msg);
+            }
+        });
+    }
+    function ajaxRemove(viedo){
+        $.ajax({
+            type: 'POST',
+            url: '/ajaxCartoonViedoReomve',
+            contentType:"application/json; charset=UTF-8",
+            data: viedo,
+            success: function(msg){
+                alert(msg);
+            }
+        });
+    }
+    </script>
 <!-- Bootstrap Js -->
 <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
 <!-- Main Js -->
 <script src="{{url_for('static', filename='js/main.js')}}"></script>
-<script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
-<script> 
-function remove(video){ 
-    if(video == ''){
-        alert('لا يوجود فيديو للحذف')
-    }else{
-        ajaxRemove(video)
-    }
-}
-function sendVideo(){ 
-    const videoInput = document.getElementById('add-new-cartoonVedio')
-    videoValue = videoInput.value
-    if(videoValue == ''){
-        alert('يجب عليك وضع لينك للفيدويو');
-    }else{
-        videoInput.value = ''
-        sendViedoAjax(videoValue)
-    }
-}
-
-function sendViedoAjax(viedo){
-    $.ajax({
-        type: 'POST',
-        url: '/ajaxCartoonViedos',
-        contentType:"application/json; charset=UTF-8",
-        data: viedo,
-        success: function(msg){
-            alert(msg);
-        }
-    });
-}
-function ajaxRemove(viedo){
-    $.ajax({
-        type: 'POST',
-        url: '/ajaxCartoonViedoReomve',
-        contentType:"application/json; charset=UTF-8",
-        data: viedo,
-        success: function(msg){
-            alert(msg);
-        }
-    });
-}
-</script>
 {% endblock %}

@@ -6,14 +6,14 @@
       <!-- Page Content -->
       <section class="welcoming py-4">
           <div class="container d-flex justify-content-center align-items-center flex-column">
-            <h3 class="welcom-heading">مرحبا  <span> </span></h3>
+            <h3 class="welcom-heading"> مرحبا سيدي  <span> </span></h3>
           </div>
       </section>
 
       <!-- Dashboard -->
       <section class="dashboard">
           <div class="container">
-              <div class="row mb-5 pb-4">
+              <div class="row mb-1 pb-4">
                   <div class="control-wrapper col-12 col-md-4">
                     <div class="control control-1 ">
                       <div class="text">
@@ -40,12 +40,11 @@
                         <p id="humad">الغاز</p>
                         <p><span class="number mx-1" id="humad-num">{{gas}}</span>%</p>
                       </div>
-                      <img src="{{url_for('static', filename='imgs/drop.png')}}" alt="star">
+                      <img src="{{url_for('static', filename='imgs/smoke.png')}}" alt="star">
                     </div>
                   </div>
-
                   
-                  <div class="control-wrapper col-12 col-md-4">
+                  <!-- <div class="control-wrapper col-12 col-md-4">
                     <div class="control control-2">
                       <div class="text">
                         <p id="humad">النار</p>
@@ -53,10 +52,10 @@
                       </div>
                       <img src="{{url_for('static', filename='imgs/drop.png')}}" alt="star">
                     </div>
-                  </div>
+                  </div> -->
 
 
-                  <div class="control-wrapper col-12 col-md-4">
+                  <div class="control-wrapper col-12 col-md-4 offset-4">
                     <a href="https://www.google.com" target="_blank">
                       <div class="control control-3"> 
                           <div class="text">
@@ -67,7 +66,9 @@
                     </a>
                   </div>
               </div>
+              <hr>
               <div class="row mb-5 pb-4">
+                <h2 class="text-center py-3">أضف محتوى لطفلك</h2>
                 <div class="control-wrapper col-12 col-md-4">
                   <div class="control control-4 mb-2">
                     <a href="eduVedios"></a>
@@ -96,17 +97,18 @@
                   </div>
                 </div>
  
-              <div class="row align-items-center justify-content-center">
+              <div class="row align-items-center justify-content-center mt-5">
                   <div class="col-12 col-md-6">
                       <div class="task-wrapper py-2 px-3" id="task-wrapper">
                           <h4>مهمات اليوم</h4>
                           <div class="tasks" id="tasks">
                               {% for task in unDoneTasks %}
                             <div class="task p-1 mb-1">
-                              <input type="checkbox" id="task1">
+                              <input type="checkbox" id="task1" disabled>
                                 <label for="task1">
                                     {{task}}
                                 </label>
+                                <span class="removeTask">X</span>
                             </div>
                               {% endfor %}
                           </div>
@@ -151,13 +153,19 @@
                 let newTaskcheckbox = document.createElement('input');
                 newTaskcheckbox.setAttribute('id', 'task3');
                 newTaskcheckbox.setAttribute('type', 'checkbox');
+                newTaskcheckbox.setAttribute('disabled', 'true');
 
                 let newTasklable = document.createElement('label');
                 newTasklable.setAttribute('for', 'task3');
                 newTasklable.innerText = taskValue;
 
+                let removeTaskSpan = document.createElement('span');
+                removeTaskSpan.setAttribute('class', 'removeTask');
+                removeTaskSpan.innerText = "X";
+
                 newTaskWrapper.append(newTaskcheckbox);
                 newTaskWrapper.append(newTasklable);
+                newTaskWrapper.append(removeTaskSpan);
                 taskWrapper.append(newTaskWrapper);
                 taskInput.value = '';
 
