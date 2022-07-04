@@ -95,7 +95,7 @@ nav .login_nav_img{
     
 }
 
-.control-wrapper .control span.remove{
+.control-wrapper .control .remove{
     color: #262626;
     position: absolute;
     top: -8px;
