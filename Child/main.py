@@ -86,6 +86,11 @@ def education():
                             current='education',
                             videos=videos)
 
+@app.route('/awards')
+def awards():
+    
+    return render_template('awards.html')
+    
 @app.route('/ajaxTasks', methods=['POST'])
 def ajaxTasks():
     if request.method == 'POST':

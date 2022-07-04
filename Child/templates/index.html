@@ -25,20 +25,20 @@
                   <div class="control-wrapper col-12 col-md-4">
                     <div class="control control-2">
                       <div class="text">
-                        <p id="month-point-text">جميع نقاط اليوم</p>
+                        <p id="month-point-text">جميع نقاط الأسبوع</p>
                         <p><span class="number" id="month-point-number">{{points}}</span> نقاط</p>
                       </div>
                       <img src="{{url_for('static', filename='imgs/star.png')}}" alt="star">
                     </div>
                   </div>
                   <div class="control-wrapper col-12 col-md-4">
-                    <div class="control control-3">
+                    <a class="control control-3" href="/awards">
                         <div class="text">
                             <p>الجوائز</p>
                             <p>شاهد الجوائز</p>
                         </div>
                         <img src="{{url_for('static', filename='imgs/trophy.png')}}" alt="">
-                    </div>
+                    </a>
                   </div>
               </div>
               <div class="row">
@@ -67,10 +67,10 @@
                   </div>
                   <div class="col-12 col-md-6">
                       <div class="wise-wrapper">
-                          <h4 class="mb-3">حكمة اليوم</h4>
+                          <!-- <h4 class="mb-3">حكمة اليوم</h4> -->
                           <div class="text-pic">
-                              <img src="{{url_for('static', filename='imgs/leader.png')}}" alt="wise-1">
-                              <p class="wise-p" id="wise-1">العقل السليكم في الجسم السليم</p>
+                              <img src="{{url_for('static', filename='imgs/robot.png')}}" alt="wise-1">
+                              <p class="wise-p" id="wise-1">لا تؤجل عمل اليوم الى الغد</p>
                           </div>
                       </div>
                   </div>

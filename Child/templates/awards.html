@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <!-- Page Content -->
+    <section class="welcoming py-4">
+        <div class="container d-flex justify-content-center align-items-center flex-column">
+            <h3 class="welcom-heading">مرحبا يا صديقي <span></span></h3>
+            <p>أنجز المهام لتحصل على النقط والجوائز</p>
+        </div>
+    </section>
+
+
+    <!-- PRIZES -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="row mb-5 pb-4">
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-1 ">
+                    <div class="text">
+                        <p id="today-point-text">كرة قدم</p>
+                        <p><span class="number" id="today-point-number">1000</span> نقطة</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/ball.png')}}" alt="ball">
+                  </div>
+                </div>
+                <div class="control-wrapper col-12 col-md-4">
+                  <div class="control control-2">
+                    <div class="text">
+                      <p id="month-point-text">دراجة</p>
+                      <p><span class="number" id="month-point-number">10000</span> نقطة</p>
+                    </div>
+                    <img src="{{url_for('static', filename='imgs/bicycle.png')}}" alt="bicycle">
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock%}
+
+
+
+    {% block scripts %}
+        <script>
+
+        </script>
+    {% endblock %}

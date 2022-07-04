@@ -94,7 +94,6 @@ def cartoonVedios():
     getViedos = db.reference('Videos/').child('Cartoon').get()
     videos = []
     if getViedos != None:
-        getViedos = list(getViedos)
         for video in getViedos[1:]:
             videos.append(video.split('.be/')[-1])
     return render_template("cartoonVedios.html", viedos=videos)     
@@ -106,10 +105,8 @@ def eduVedios():
     getViedos = db.reference('Videos/').child('Education').get()
     videos = []
     if getViedos != None:
-        getViedos = list(getViedos)
         for video in getViedos[1:]: 
-            #print("here /n ", video)
-            videos.append(video.split('.be/')[-1])
+            videos.append(video.split('.be/')[1])
     return render_template("eduVedios.html", viedos=videos)
 
 @app.route('/ajaxeducationViedos', methods=['POST'])
@@ -118,11 +115,8 @@ def ajaxeducationViedos():
         data = request.data.decode("utf-8")
         if validators.url(data)==True:
            videos = db.reference('Videos/')
-           if videos.child('Education').get() == None:
-               education = [data]
-           else: 
-                education = list(videos.child('Education').get())
-                education.append(data)
+           education = list(videos.child('Education').get())
+           education.append(data)
            videos.child('Education').set(education)
            return 'تمت الإضافه بنجاح'
         else: 
@@ -134,11 +128,10 @@ def ajaxeducationViedoReomve():
         data = request.data.decode('utf-8')
         videos = db.reference('Videos/')
         education = list(videos.child("Education").get())
-        if videos.child("Education").get() != None:
-            for video in education[1:]: 
-                if video.split('.be/')[-1] == data:
-                    education.remove(video)
-            videos.child("Education").set(education)
+        for video in education[1:]: 
+            if video.split('.be/')[1] == data:
+                education.remove(video)
+        videos.child("Education").set(education)
         return 'تمت الحذف بنجاح'
     return 'يوجد مشكله في الحذف'
 
@@ -149,14 +142,11 @@ def ajaxCartoonViedos():
     if request.method == "POST":
         data = request.data.decode("utf-8")
         if validators.url(data)==True:
-            videos = db.reference('Videos/')
-            if videos.child('Cartoon').get() == None: 
-               education = [data]
-            else:
-                education = list(videos.child('Cartoon').get())
-                education.append(data)
-            videos.child('Cartoon').set(education)
-            return 'تمت الإضافه بنجاح'
+           videos = db.reference('Videos/')
+           education = list(videos.child('Cartoon').get())
+           education.append(data)
+           videos.child('Cartoon').set(education)
+           return 'تمت الإضافه بنجاح'
         else: 
             return 'من فضلك أدخل لينك صحيح'
 
@@ -166,12 +156,10 @@ def ajaxCartoonViedoReomve():
         data = request.data.decode('utf-8')
         videos = db.reference('Videos/')
         education = list(videos.child("Cartoon").get())
-        if videos.child("Cartoon").get() != None:
-            for video in education[1:]: 
-                print("here", video)
-                if video.split('.be/')[-1] == data:
-                    education.remove(video)
-            videos.child("Cartoon").set(education)
+        for video in education[1:]: 
+            if video.split('.be/')[1] == data:
+                education.remove(video)
+        videos.child("Cartoon").set(education)
         return 'تمت الحذف بنجاح'
     return 'يوجد مشكله في الحذف'
 
