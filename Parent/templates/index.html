@@ -15,7 +15,7 @@
       <section class="dashboard">
           <div class="container">
               <div class="row mb-5 pb-4">
-                  <div class="control-wrapper col-12 col-md-4">
+                  <div class="control-wrapper col-12 col-md-4 my-3">
                     <div class="control control-1 ">
                       <div class="text">
                           <p id="temper">درجة الحرارة</p>
@@ -24,7 +24,7 @@
                       <img src="{{url_for('static', filename='imgs/temper.png')}}" alt="coin">
                     </div>
                   </div>
-                  <div class="control-wrapper col-12 col-md-4">
+                  <div class="control-wrapper col-12 col-md-4 my-3">
                     <div class="control control-2">
                       <div class="text">
                         <p id="humad">الرطوبة</p>
@@ -35,7 +35,7 @@
                   </div>
 
                 
-                  <div class="control-wrapper col-12 col-md-4">
+                  <div class="control-wrapper col-12 col-md-4 my-3">
                     <div class="control control-2">
                       <div class="text">
                         <p id="humad">الغاز</p>
@@ -46,7 +46,7 @@
                   </div>
 
 
-                  <div class="control-wrapper col-12 col-md-4">
+                  <div class="control-wrapper col-12 col-md-4 offset-4 my-3">
                     <a href="https://www.google.com" target="_blank">
                       <div class="control control-3"> 
                           <div class="text">
@@ -57,9 +57,10 @@
                     </a>
                   </div>
               </div>
+              <hr>
               <div class="row mb-5 pb-4">
                 <h2 class="text-center py-3">أضف محتوى لطفلك</h2>
-                <div class="control-wrapper col-12 col-md-4 offset-1">
+                <div class="control-wrapper col-12 col-md-4 offset-1 my-2">
                   <div class="control control-4 mb-2">
                     <a href="eduVedios"></a>
                     <div class="text">
@@ -68,7 +69,7 @@
                     <img src="{{url_for('static', filename='imgs/idea.png')}}" alt="coin">
                   </div>
                 </div>
-                <div class="control-wrapper col-12 col-md-4">
+                <div class="control-wrapper col-12 col-md-4 my-2">
                   <div class="control control-5 mb-2">
                     <a href="cartoonVedios"></a>
                     <div class="text">
@@ -85,7 +86,7 @@
                           <div class="tasks" id="tasks">
                               {% for task in unDoneTasks %}
                             <div class="task p-1 mb-1">
-                              <input type="checkbox" id="task1">
+                              <input type="checkbox" id="task1" disabled>
                                 <label for="task1">
                                     {{task}}
                                 </label>
@@ -93,7 +94,7 @@
                               {% endfor %}
                           </div>
                         <div class="input-wrapper d-flex align-items-center justify-content-between gap-2">
-                          <input class="flex-grow-1 h-100" type="text" name="" id="add-task-text" placeholder="ادخل المهمة">
+                          <input class="flex-grow-1 h-100" type="text" name="" id="add-task-text" placeholder="ادخل المهمة" >
                           <button class="btn btn-primary p-2" id="add-task-input">أضافة</button>
                         </div>
                       </div>
@@ -133,6 +134,7 @@
                 let newTaskcheckbox = document.createElement('input');
                 newTaskcheckbox.setAttribute('id', 'task3');
                 newTaskcheckbox.setAttribute('type', 'checkbox');
+                newTaskcheckbox.setAttribute('disabled', 'true');
 
                 let newTasklable = document.createElement('label');
                 newTasklable.setAttribute('for', 'task3');

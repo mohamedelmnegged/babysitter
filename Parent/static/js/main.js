@@ -1,21 +1,21 @@
-const taskInput = document.getElementById('add-task-text'),
+const // taskInput = document.getElementById('add-task-text'),
       eduVedioInput = document.getElementById('add-new-eduVedio'),
       cartoonVedioInput = document.getElementById('add-new-cartoonVedio'),
-      taskBtn = document.getElementById('add-task-input'),
+      // taskBtn = document.getElementById('add-task-input'),
       eduVidoBtn = document.getElementById('add-new-eduVedio-input'),
       cartoonVidoBtn = document.getElementById('add-new-cartoonVedio-input'),
-      taskWrapper = document.getElementById('tasks'),
+      // taskWrapper = document.getElementById('tasks'),
       eduVidoesWrapper = document.getElementById('eduVidoes'),
       cartoonVidoesWrapper = document.getElementById('cartoonVidoes');
 
 let removeVideo = document.getElementsByClassName('remove');
 
 // REMOVE VED
-// Array.prototype.forEach.call(removeVideo, function(span) {
-//     span.addEventListener('click', function(){
-//         this.parentElement.parentElement.remove();
-//     })
-// });
+Array.prototype.forEach.call(removeVideo, function(span) {
+    span.addEventListener('click', function(){
+        this.parentElement.parentElement.remove();
+    })
+});
 
 
 // ADD NEW CARTOON VED
@@ -121,32 +121,32 @@ eduVidoBtn.addEventListener('click', function(){
 });
 
 // ADD NEW TASK
-taskBtn.addEventListener('click', function(){
-    let taskValue = taskInput.value;
+// taskBtn.addEventListener('click', function(){
+//     let taskValue = taskInput.value;
 
-    if(taskValue == ''){
-        alert('يجب عليك ادخال نص للمهمة')
-    }else{
-        let newTaskWrapper = document.createElement('div');
-        newTaskWrapper.classList.add('task');
-        newTaskWrapper.classList.add('p-1');
-        newTaskWrapper.classList.add('mb-1');
+//     if(taskValue == ''){
+//         alert('يجب عليك ادخال نص للمهمة')
+//     }else{
+//         let newTaskWrapper = document.createElement('div');
+//         newTaskWrapper.classList.add('task');
+//         newTaskWrapper.classList.add('p-1');
+//         newTaskWrapper.classList.add('mb-1');
         
-        let newTaskcheckbox = document.createElement('input');
-        newTaskcheckbox.setAttribute('id', 'task3');
-        newTaskcheckbox.setAttribute('type', 'checkbox');
+//         let newTaskcheckbox = document.createElement('input');
+//         newTaskcheckbox.setAttribute('id', 'task3');
+//         newTaskcheckbox.setAttribute('type', 'checkbox');
     
-        let newTasklable = document.createElement('label');
-        newTasklable.setAttribute('for', 'task3');
-        newTasklable.innerText = taskValue;
+//         let newTasklable = document.createElement('label');
+//         newTasklable.setAttribute('for', 'task3');
+//         newTasklable.innerText = taskValue;
     
-        newTaskWrapper.append(newTaskcheckbox);
-        newTaskWrapper.append(newTasklable);
-        taskWrapper.append(newTaskWrapper);
-        taskInput.value = '';
-    }
+//         newTaskWrapper.append(newTaskcheckbox);
+//         newTaskWrapper.append(newTasklable);
+//         taskWrapper.append(newTaskWrapper);
+//         taskInput.value = '';
+//     }
 
-});
+// });
 
 
 function test() {
