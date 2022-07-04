@@ -9,11 +9,19 @@ const // taskInput = document.getElementById('add-task-text'),
       cartoonVidoesWrapper = document.getElementById('cartoonVidoes');
 
 let removeVideo = document.getElementsByClassName('remove');
+let removeTask = document.getElementsByClassName('removeTask');
 
 // REMOVE VED
 Array.prototype.forEach.call(removeVideo, function(span) {
     span.addEventListener('click', function(){
         this.parentElement.parentElement.remove();
+    })
+});
+
+Array.prototype.forEach.call(removeTask, function(span) {
+    span.addEventListener('click', function(){
+        this.parentElement.remove();
+        console.log(this.previousElementSibling.innerText); // TASK NAME
     })
 });
 

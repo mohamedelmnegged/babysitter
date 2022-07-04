@@ -85,11 +85,12 @@
                           <h4>مهمات اليوم</h4>
                           <div class="tasks" id="tasks">
                               {% for task in unDoneTasks %}
-                            <div class="task p-1 mb-1">
+                            <div class="task p-1 mb-1 position-relative">
                               <input type="checkbox" id="task1" disabled>
                                 <label for="task1">
                                     {{task}}
                                 </label>
+                                <span class="removeTask">X</span>
                             </div>
                               {% endfor %}
                           </div>
