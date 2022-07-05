@@ -135,6 +135,20 @@ def ajaxeducationViedoReomve():
         return 'تمت الحذف بنجاح'
     return 'يوجد مشكله في الحذف'
 
+@app.route('/ajaxRemoveTask', methods=['POST'])
+def ajaxRemoveTask(): 
+    if request.method == "POST": 
+        data = request.data.decode('utf-8')
+        tasks = db.reference('Tasks/')
+        UnDone = list(tasks.child("UnDone").get())
+        if UnDone != None:
+            data = data.strip()
+            for task in UnDone[1:]: 
+                if task == data:
+                    UnDone.remove(task)
+            tasks.child("UnDone").set(UnDone)
+            return 'تمت الحذف بنجاح'
+    return 'يوجد مشكله في الحذف'
 
 
 @app.route('/ajaxCartoonViedos', methods=['POST'])

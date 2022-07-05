@@ -18,10 +18,25 @@ Array.prototype.forEach.call(removeVideo, function(span) {
     })
 });
 
+function removeTaskAjax(task){
+    $.ajax({
+        type: 'POST',
+        url: '/ajaxRemoveTask',
+        contentType:"application/json; charset=UTF-8",
+        data: task,
+        success: function(msg){
+            console.log( msg);
+        }
+    });
+}
+
 Array.prototype.forEach.call(removeTask, function(span) {
     span.addEventListener('click', function(){
         this.parentElement.remove();
-        console.log(this.previousElementSibling.innerText); // TASK NAME
+        var taskName = this.previousElementSibling.innerText;
+        console.log(taskName); // TASK NAME
+        //alert(taskName);
+        removeTaskAjax(taskName)
     })
 });
 
